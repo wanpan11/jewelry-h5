@@ -26,8 +26,25 @@ const baseConfig = {
   module: {
     rules: [
       {
-        test: /\.(c|le)ss$/,
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+      {
+        test: /\.less$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              additionalData: `@import "@nutui/nutui-react/dist/styles/variables.scss";`,
+            },
+          },
+        ],
       },
       {
         test: /\.(t|j)sx?$/,
@@ -51,7 +68,19 @@ const baseConfig = {
             ],
             ["@babel/preset-typescript", { isTSX: true, allExtensions: true }],
           ],
-          plugins: ["@babel/plugin-transform-runtime"],
+          plugins: [
+            "@babel/plugin-transform-runtime",
+            [
+              "import",
+              {
+                libraryName: "@nutui/nutui-react",
+                libraryDirectory: "dist/esm",
+                style: true,
+                camel2DashComponentName: false,
+              },
+              "nutui-react",
+            ],
+          ],
         },
       },
       {

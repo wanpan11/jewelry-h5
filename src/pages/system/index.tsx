@@ -1,7 +1,7 @@
-import Layout from "@src/layout";
+import AppLayout from "@src/layout";
 
 const System = ({ children }: PageProps) => {
-  return <Layout>{children}</Layout>;
+  return <AppLayout>{children}</AppLayout>;
 };
 
 export default System;

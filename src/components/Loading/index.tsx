@@ -1,18 +1,14 @@
 import { memo } from "react";
-import { Spin, Layout } from "antd";
-import lessStyle from "./index.module.less";
-import classnames from "classnames";
+import { Skeleton } from "@nutui/nutui-react";
+// import lessStyle from "./index.module.less";
+// import classnames from "classnames";
 
-interface LoadingProps {
-  full: boolean;
-}
+// interface LoadingProps {
+//   full: boolean;
+// }
 
-const Loading = ({ full }: LoadingProps) => {
-  return (
-    <Layout className={classnames({ [lessStyle.full]: full })}>
-      <Spin size="large" tip="数据加载中..." />
-    </Layout>
-  );
+const Loading = () => {
+  return <Skeleton width="250px" height="15px" animated />;
 };
 
 export default memo(Loading);

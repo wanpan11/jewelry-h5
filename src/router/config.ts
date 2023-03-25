@@ -21,7 +21,7 @@ const routers: Route[] = [
   },
   {
     id: "1",
-    path: "/system",
+    path: "/",
     title: "",
     component: getLazyLoad("/system"),
     childrenList: [
@@ -33,7 +33,7 @@ const routers: Route[] = [
       },
       {
         id: "12",
-        path: "/system/data",
+        path: "/data",
         title: "数据报表",
         childrenList: [
           {
@@ -46,7 +46,7 @@ const routers: Route[] = [
       },
       {
         id: "13",
-        path: "/system/setting",
+        path: "/setting",
         title: "系统设置",
         childrenList: [
           {
@@ -58,7 +58,7 @@ const routers: Route[] = [
           {
             id: "132",
             title: "开发管理",
-            path: "/system/setting/dev",
+            path: "/setting/dev",
             component: getLazyLoad("/system/setting/dev"),
           },
         ],
