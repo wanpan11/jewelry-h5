@@ -23,45 +23,19 @@ const routers: Route[] = [
     id: "1",
     path: "/",
     title: "",
-    component: getLazyLoad("/system"),
+    component: getLazyLoad("/"),
     childrenList: [
       {
         id: "11",
         index: true,
         title: "首页",
-        component: getLazyLoad("/system/home"),
+        component: getLazyLoad("/home"),
       },
       {
         id: "12",
-        path: "/data",
-        title: "数据报表",
-        childrenList: [
-          {
-            id: "121",
-            title: "销售数据",
-            index: true,
-            component: getLazyLoad("/system/data/report"),
-          },
-        ],
-      },
-      {
-        id: "13",
-        path: "/setting",
-        title: "系统设置",
-        childrenList: [
-          {
-            id: "131",
-            title: "厂商管理",
-            index: true,
-            component: getLazyLoad("/system/setting/company"),
-          },
-          {
-            id: "132",
-            title: "开发管理",
-            path: "/setting/dev",
-            component: getLazyLoad("/system/setting/dev"),
-          },
-        ],
+        path: "/natural",
+        title: "白钻-天然钻",
+        component: getLazyLoad("/natural"),
       },
     ],
   },

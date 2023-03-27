@@ -2,7 +2,6 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import AppRouter from "./router";
 import "./assets/css/init.less";
-// import "@nutui/nutui-react/dist/style.css";
 import "./mock/index";
 
 const dom = document.getElementById("root") as Element;

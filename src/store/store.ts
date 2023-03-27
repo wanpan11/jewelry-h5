@@ -4,6 +4,8 @@ import { getRouterMap } from "@src/utils/index";
 import type { TabInfo } from "@src/types/index";
 
 export class MobxStore {
+  topLevel = true;
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -31,6 +33,10 @@ export class MobxStore {
     const { tabList } = this;
 
     return getRouterMap(tabList);
+  }
+
+  setTopLevel(val: boolean) {
+    this.topLevel = val;
   }
 }
 

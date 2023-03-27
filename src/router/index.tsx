@@ -20,7 +20,7 @@ const getRoutes = (routers: Route[]) => {
 
     if (Component) {
       props.element = (
-        <Suspense fallback={<Loading full />}>
+        <Suspense fallback={<Loading />}>
           <Component title={title}>
             {childrenList.length ? <Outlet /> : null}
           </Component>
