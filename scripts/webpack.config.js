@@ -7,18 +7,18 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
-const config = require(`./${process.env.NODE_ENV}.config.js`);
+const dynamicConf = require(`./${process.env.NODE_ENV}.config.js`);
 const dirRoot = path.resolve(__dirname, "../");
 
 const baseConfig = {
   context: path.resolve(dirRoot, "./src"),
-  entry: config.entry,
+  entry: dynamicConf.entry,
   output: {
-    path: path.resolve(dirRoot, config.outDir),
+    path: path.resolve(dirRoot, dynamicConf.outDir),
     filename: "[name]_[contenthash].js",
     chunkFilename: "js/[name]_[contenthash].js",
     clean: true,
-    publicPath: config.publicPath,
+    publicPath: dynamicConf.publicPath,
     assetModuleFilename: "images/[hash][ext][query]",
   },
   devtool: false,
@@ -111,7 +111,7 @@ const baseConfig = {
   plugins: [
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
-      title: config.title,
+      title: dynamicConf.title,
       template: path.resolve(dirRoot, "./public/index.html"),
       filename: "index.html",
     }),
@@ -137,9 +137,9 @@ module.exports = (env, argv) => {
         progress: true,
         overlay: true,
       },
-      proxy: config?.devServer?.proxy,
+      proxy: dynamicConf?.devServer?.proxy,
       open: true,
-      port: config?.devServer?.port,
+      port: dynamicConf?.devServer?.port,
     };
     baseConfig.cache = { type: "filesystem" };
     baseConfig.devServer = devServer;
