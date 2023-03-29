@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[957],{9957:(a,b,e)=>{e.r(b),e.d(b,{default:()=>p});const p={tab_box:"JvWEaOoDggVRzpR20pUG",tab_label:"g_Ea2BiUXWEpbyMoiupw"}}}]);

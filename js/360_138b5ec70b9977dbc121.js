@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[360],{7360:(b,e,a)=>{a.r(e),a.d(e,{default:()=>c});const c={tab_box:"zZicPZqk0NpyJ4IgIolM",tab_label:"hS3A0c1FSHqVnVMib42A"}}}]);
