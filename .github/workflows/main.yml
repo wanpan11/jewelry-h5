@@ -3,9 +3,7 @@ name: CI
 env:
   CI: false
 
-on:
-  push:
-    branches: [main]
+on: workflow_dispatch
 
 permissions:
   contents: write
