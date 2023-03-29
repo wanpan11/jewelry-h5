@@ -26,12 +26,19 @@ const baseConfig = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
-      },
-      {
-        test: /\.less$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
+        test: /\.(c|le)ss$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: dynamicConf.cssPublicPath
+                ? dynamicConf.cssPublicPath
+                : dynamicConf.publicPath,
+            },
+          },
+          "css-loader",
+          "less-loader",
+        ],
       },
       {
         test: /\.s[ac]ss$/i,
