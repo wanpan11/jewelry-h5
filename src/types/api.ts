@@ -12,28 +12,22 @@ type PageInfo<T> = {
   list: T[];
 };
 
-export namespace AccountApi {
-  export type Login = {
-    account: string;
-    password: string;
-  };
-}
-
-export namespace CompanyApi {
-  export type InsertReq = {
-    category: number;
-    contact: string;
-    name: string;
-    mobile: string;
-  };
-
+export namespace NaturalApi {
   export type ListReq = {
     pageNum: number;
     pageSize: number;
-    name?: string;
   };
 
-  export type ListRes = PageInfo<
-    InsertReq & { id: number; updateTime: string }
-  >;
+  export type ListRes = PageInfo<{
+    deliveryTime: string;
+    origin: string;
+    shape: string;
+    color: string;
+    neatness: string;
+    cut: string;
+    polishing: string;
+    symmetry: string;
+    certificate: string;
+    fluorescence: string;
+  }>;
 }

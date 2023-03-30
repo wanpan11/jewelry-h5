@@ -25,7 +25,7 @@ const Home = () => {
         <SwiperItem>
           <img
             style={{ width: "100%", display: "block" }}
-            src="https://storage.360buyimg.com/jdc-article/fristfabu.jpg"
+            src="https://wanbaorapdia.oss-cn-shenzhen.aliyuncs.com/fileserver/image/rapnetbuy/login-aside-3.png"
             alt=""
           />
         </SwiperItem>

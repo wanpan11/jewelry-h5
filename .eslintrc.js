@@ -48,6 +48,7 @@ module.exports = {
       { arrowParens: "avoid", singleQuote: false },
     ],
     "react/prop-types": 0,
+    "@typescript-eslint/ban-ts-comment": 0,
   },
   // 过滤文件
   ignorePatterns: ["dist", "node_modules", "pnpm-lock", "env"],
