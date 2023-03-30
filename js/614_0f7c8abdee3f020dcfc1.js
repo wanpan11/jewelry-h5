@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[614],{1614:(e,s,t)=>{t.r(s),t.d(s,{default:()=>u});const u={button_box:"wk4feL7tlussgPRMY1Pd",query_box:"knzvzMO7pXSxJIb9MhYr",query_text:"YDUilAsCoomksHay7oKx",table:"Mpo666AsVA6V9yt2XlFC"}}}]);
