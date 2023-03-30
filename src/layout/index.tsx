@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const AppLayout = observer(({ children }: { children: JSX.Element }) => {
-  const { topLevel } = store;
+  const { topLevel, routerMap } = store;
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -32,17 +32,15 @@ const AppLayout = observer(({ children }: { children: JSX.Element }) => {
               }}
             >
               <TabbarItem tabTitle="首页" icon="home" />
-              <TabbarItem tabTitle="分类" icon="category" />
               <TabbarItem tabTitle="发现" icon="find" />
-              <TabbarItem tabTitle="购物车" icon="cart" />
               <TabbarItem tabTitle="我的" icon="my" />
             </Tabbar>
           </>
         ) : (
           <>
             <NavBar
-              title="浏览记录"
-              // desc="清空"
+              className={lessStyle.top_tab}
+              title={routerMap[pathname]}
               leftShow
               onClickBack={() => {
                 store.setTopLevel(true);

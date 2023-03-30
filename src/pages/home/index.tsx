@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import { Swiper, SwiperItem } from "@nutui/nutui-react";
-import { Badge, Avatar, Cell } from "@nutui/nutui-react";
+import { Badge, Cell } from "@nutui/nutui-react";
 import { tab } from "@src/config";
 import lessStyle from "./index.module.less";
 import { useNavigate } from "react-router-dom";
 import MobxContext from "@src/store/context";
+import diamond from "@src/assets/images/diamond.svg";
 
 const Home = () => {
   const [initPage1] = useState(0);
@@ -41,7 +42,8 @@ const Home = () => {
                   store.setTopLevel(false);
                 }}
               >
-                <Avatar icon="my" shape="square" />
+                <img src={diamond} alt="" className={lessStyle.tab_icon} />
+
                 <div className={lessStyle.tab_label}>{e.label}</div>
               </div>
             </Badge>

@@ -28,7 +28,7 @@ const routers: Route[] = [
       {
         id: "12",
         path: "/natural",
-        title: "白钻-天然钻",
+        title: "天然钻",
         component: getLazyLoad("/natural"),
       },
     ],

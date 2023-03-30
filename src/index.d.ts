@@ -11,6 +11,11 @@ declare module "*.jpg" {
   export default classes;
 }
 
+declare module "*.svg" {
+  const classes: string;
+  export default classes;
+}
+
 interface PathRoute {
   id: string;
   path: string;
