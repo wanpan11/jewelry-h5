@@ -9,6 +9,7 @@ const BundleAnalyzerPlugin =
 
 const dynamicConf = require(`./${process.env.NODE_ENV}.config.js`);
 const rootDir = path.resolve(__dirname, "../");
+console.log("ENV ===>", process.env.NODE_ENV);
 
 const baseConfig = {
   context: path.resolve(rootDir, "./src"),
@@ -37,6 +38,14 @@ const baseConfig = {
             },
           },
           "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [["postcss-preset-env"]],
+              },
+            },
+          },
           "less-loader",
         ],
       },
@@ -45,6 +54,14 @@ const baseConfig = {
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [["postcss-preset-env"]],
+              },
+            },
+          },
           {
             loader: "sass-loader",
             options: {
@@ -126,7 +143,7 @@ const baseConfig = {
 };
 
 module.exports = (env, argv) => {
-  console.log("ENV ===>", argv.mode);
+  console.log("MODE ===>", argv.mode);
 
   if (argv.mode === "development") {
     const devServer = {
