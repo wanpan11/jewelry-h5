@@ -8,13 +8,13 @@ const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const dynamicConf = require(`./${process.env.NODE_ENV}.config.js`);
-const dirRoot = path.resolve(__dirname, "../");
+const rootDir = path.resolve(__dirname, "../");
 
 const baseConfig = {
-  context: path.resolve(dirRoot, "./src"),
+  context: path.resolve(rootDir, "./src"),
   entry: dynamicConf.entry,
   output: {
-    path: path.resolve(dirRoot, dynamicConf.outDir),
+    path: path.resolve(rootDir, dynamicConf.outDir),
     filename: "[name]_[contenthash].js",
     chunkFilename: "js/[name]_[contenthash].js",
     clean: true,
@@ -104,7 +104,7 @@ const baseConfig = {
   // 模块解析
   resolve: {
     alias: {
-      "@src": path.resolve(dirRoot, "./src"),
+      "@src": path.resolve(rootDir, "./src"),
     },
     extensions: [".ts", ".jsx", ".tsx", "..."], // 自动不全文件后缀
   },
@@ -112,7 +112,7 @@ const baseConfig = {
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
       title: dynamicConf.title,
-      template: path.resolve(dirRoot, "./public/index.html"),
+      template: path.resolve(rootDir, "./public/index.html"),
       filename: "index.html",
     }),
     // css 分离

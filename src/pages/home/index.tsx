@@ -30,7 +30,7 @@ const Home = () => {
         </SwiperItem>
       </Swiper>
 
-      <Cell>
+      <Cell style={{ margin: "0" }}>
         {tab.map(e => {
           return (
             <Badge key={e.id}>
