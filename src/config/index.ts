@@ -11,86 +11,83 @@ export const queryList = [
   { name: "fluorescence", label: "荧光" },
 ];
 
-export const queryObj: Record<
-  string,
-  { value: string | number; text: string }[]
-> = {
+export const queryObj: Record<string, { value: number; text: string }[]> = {
   shape: [
     { value: 1, text: "圆形" },
     { value: 2, text: "梨形" },
     { value: 3, text: "公主方" },
-    { value: 5, text: "阿斯切" },
-    { value: 6, text: "椭圆形" },
-    { value: 7, text: "雷迪恩" },
-    { value: 8, text: "祖母绿" },
-    { value: 9, text: "心形" },
-    { value: 10, text: "垫形" },
-    { value: 11, text: "马眼" },
-    { value: 12, text: "其他" },
+    { value: 4, text: "阿斯切" },
+    { value: 5, text: "椭圆形" },
+    { value: 6, text: "雷迪恩" },
+    { value: 7, text: "祖母绿" },
+    { value: 8, text: "心形" },
+    { value: 9, text: "垫形" },
+    { value: 10, text: "马眼" },
+    { value: 11, text: "其他" },
   ],
   color: [
     { value: 1, text: "D" },
     { value: 2, text: "E" },
     { value: 3, text: "F" },
-    { value: 5, text: "G" },
-    { value: 6, text: "H" },
-    { value: 7, text: "I" },
-    { value: 8, text: "J" },
-    { value: 9, text: "K" },
-    { value: 10, text: "L" },
-    { value: 11, text: "M" },
-    { value: 12, text: "N" },
-    { value: 13, text: "<N" },
+    { value: 4, text: "G" },
+    { value: 5, text: "H" },
+    { value: 6, text: "I" },
+    { value: 7, text: "J" },
+    { value: 8, text: "K" },
+    { value: 9, text: "L" },
+    { value: 10, text: "M" },
+    { value: 11, text: "N" },
+    { value: 12, text: "<N" },
   ],
   neatness: [
     { value: 1, text: "FL" },
     { value: 2, text: "IF" },
     { value: 3, text: "VVS1" },
-    { value: 5, text: "VVS2" },
-    { value: 6, text: "VS1" },
-    { value: 7, text: "VS2" },
-    { value: 8, text: "SI1" },
-    { value: 9, text: "SI2" },
-    { value: 10, text: "SI3" },
-    { value: 11, text: "I1" },
-    { value: 12, text: "I2" },
-    { value: 13, text: "I3" },
+    { value: 4, text: "VVS2" },
+    { value: 5, text: "VS1" },
+    { value: 6, text: "VS2" },
+    { value: 7, text: "SI1" },
+    { value: 8, text: "SI2" },
+    { value: 9, text: "SI3" },
+    { value: 10, text: "I1" },
+    { value: 11, text: "I2" },
+    { value: 12, text: "I3" },
   ],
   cut: [
     { value: 1, text: "EX" },
     { value: 2, text: "VG" },
     { value: 3, text: "GD" },
-    { value: 5, text: "FR" },
+    { value: 4, text: "FR" },
   ],
   polishing: [
     { value: 1, text: "EX" },
     { value: 2, text: "VG" },
     { value: 3, text: "GD" },
-    { value: 5, text: "FR" },
+    { value: 4, text: "FR" },
   ],
   symmetry: [
     { value: 1, text: "EX" },
     { value: 2, text: "VG" },
     { value: 3, text: "GD" },
-    { value: 5, text: "FR" },
+    { value: 4, text: "FR" },
   ],
   certificate: [
     { value: 1, text: "GIA" },
     { value: 2, text: "IGI" },
     { value: 3, text: "HRD" },
-    { value: 5, text: "NGTC" },
-    { value: 6, text: "Other" },
+    { value: 4, text: "NGTC" },
+    { value: 5, text: "Other" },
   ],
   fluorescence: [
     { value: 1, text: "N" },
     { value: 2, text: "F" },
     { value: 3, text: "M" },
-    { value: 5, text: "S" },
-    { value: 6, text: "VS" },
+    { value: 4, text: "S" },
+    { value: 5, text: "VS" },
   ],
 };
 
-export enum shape {
+export enum Shape {
   "圆形" = 1,
   "梨形",
   "公主方",
@@ -103,7 +100,7 @@ export enum shape {
   "马眼",
   "其他",
 }
-export enum color {
+export enum Color {
   "D" = 1,
   "E",
   "F",
@@ -117,7 +114,7 @@ export enum color {
   "N",
   "<N",
 }
-export enum neatness {
+export enum Neatness {
   "FL" = 1,
   "IF",
   "VVS1",
@@ -131,32 +128,32 @@ export enum neatness {
   "I2",
   "I3",
 }
-export enum cut {
+export enum Cut {
   "EX" = 1,
   "VG",
   "GD",
   "FR",
 }
-export enum polishing {
+export enum Polishing {
   "EX" = 1,
   "VG",
   "GD",
   "FR",
 }
-export enum symmetry {
+export enum Symmetry {
   "EX" = 1,
   "VG",
   "GD",
   "FR",
 }
-export enum certificate {
+export enum Certificate {
   "GIA" = 1,
   "IGI",
   "HRD",
   "NGTC",
   "Other",
 }
-export enum fluorescence {
+export enum Fluorescence {
   "N" = 1,
   "F",
   "M",

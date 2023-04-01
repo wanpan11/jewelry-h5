@@ -4,43 +4,42 @@ import {
   Collapse,
   CollapseItem,
   Button,
-  Table,
+  Skeleton,
 } from "@nutui/nutui-react";
 import lessStyle from "./index.module.less";
 import { useState } from "react";
 import { queryObj, queryList } from "@src/config";
 import { naturalService } from "@src/api/natural";
 import { useRequest } from "ahooks";
-import { NaturalApi } from "@src/types/api";
+import {
+  Shape,
+  Color,
+  Neatness,
+  Cut,
+  Polishing,
+  Symmetry,
+  Certificate,
+  Fluorescence,
+} from "@src/config";
 
 const Natural = () => {
   const [isVisible1, setIsVisible1] = useState(false);
   const [activeName, activeNameHandle] = useState("");
   const [queryInfo, queryInfoHandle] = useState<Record<string, string>>({});
-  const [showName, showNameHandle] = useState<string | null>(null);
+  const [queryText, queryTextHandle] = useState<Record<string, string>>({});
+  const [showName, showNameHandle] = useState<string>("");
 
-  const { data, run } = useRequest(naturalService.list, {
+  const { data, loading, run } = useRequest(naturalService.list, {
+    // @ts-ignore
     defaultParams: [{ pageNum: 1, pageSize: 10 }],
   });
 
   const showList = showName ? queryObj[showName] : [];
 
-  const columns = [
-    { title: "货期", key: "deliveryTime" },
-    {
-      title: "供货商",
-      key: "2",
-      render(record: NaturalApi.ListRes["list"][number]) {
-        return <div>{record.origin}</div>;
-      },
-    },
-    { title: "钻石信息", key: "3" },
-  ];
-
   return (
     <div>
       <Collapse
-        activeName={[activeName]}
+        activeName={activeName ? [activeName] : []}
         icon="arrow-down"
         iconSize="16"
         iconColor="#999"
@@ -58,9 +57,9 @@ const Natural = () => {
                 title={e.label}
                 // @ts-ignore
                 desc={
-                  queryInfo[e.name] ? (
+                  queryText[e.name] ? (
                     <div className={lessStyle.query_text}>
-                      {queryInfo[e.name]}
+                      {queryText[e.name]}
                     </div>
                   ) : (
                     <div>点击选择</div>
@@ -76,9 +75,18 @@ const Natural = () => {
 
           <div className={lessStyle.button_box}>
             <Button
-              type="primary"
-              block
               onClick={() => {
+                queryTextHandle({});
+                queryInfoHandle({});
+              }}
+            >
+              重置
+            </Button>
+
+            <Button
+              type="primary"
+              onClick={() => {
+                // @ts-ignore
                 run({ pageNum: 1, pageSize: 10, ...queryInfo });
                 activeNameHandle("");
               }}
@@ -89,21 +97,102 @@ const Natural = () => {
         </CollapseItem>
       </Collapse>
 
-      <div className={lessStyle.table}>
-        <Table columns={columns} data={data?.data.list || []} />
+      <div className={lessStyle.list}>
+        {!loading ? (
+          <div className={lessStyle.table}>
+            {data?.data.list.map((e, i) => {
+              return (
+                <div key={i} className={lessStyle.item}>
+                  <div className={lessStyle.info_box}>
+                    <div className={lessStyle.title}>货源信息</div>
+
+                    <div className={lessStyle.content}>
+                      <span>
+                        <span>货期：</span>
+                        {e.deliveryTime}
+                      </span>
+                      <span>
+                        <span>地点：</span>
+                        {e.origin}
+                      </span>
+                      <span>
+                        <span>供应商：</span>
+                        {e.supplier}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className={lessStyle.info_box}>
+                    <div className={lessStyle.title}>货品信息</div>
+
+                    <div className={lessStyle.content}>
+                      <span>
+                        <span>形状：</span>
+                        {Shape[e.shape]}
+                      </span>
+                      <span>
+                        <span>颜色：</span>
+                        {Color[e.color]}
+                      </span>
+                      <span>
+                        <span>净度：</span>
+                        {Neatness[e.neatness]}
+                      </span>
+                      <span>
+                        <span>切工：</span>
+                        {Cut[e.cut]}
+                      </span>
+                      <span>
+                        <span>抛光：</span>
+                        {Polishing[e.polishing]}
+                      </span>
+                      <span>
+                        <span>对称：</span>
+                        {Symmetry[e.symmetry]}
+                      </span>
+                      <span>
+                        <span>证书：</span>
+                        {Certificate[e.certificate]}
+                      </span>
+                      <span>
+                        <span>荧光：</span>
+                        {Fluorescence[e.fluorescence]}
+                      </span>
+                      <span>
+                        <span>克拉：</span>
+                        {e.karat}
+                      </span>
+                      <span>
+                        <span>尺寸：</span>
+                        {e.size}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className={lessStyle.btn_box}>
+                    <Button>详情</Button>
+                    <Button>联系</Button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <Skeleton width="100vw" height="20px" row={20} round animated />
+        )}
       </div>
 
       <Picker
         isVisible={isVisible1}
         listData={showList}
-        onConfirm={values => {
-          const value = values[0];
-
-          if (!showName) return;
+        onConfirm={(_, [item]) => {
           showList.some(e => {
-            if (e.value === value) {
+            if (e.value === item.value) {
               queryInfoHandle(draft => {
-                return { ...draft, [showName]: e.text };
+                return { ...draft, [showName]: item.value.toString() };
+              });
+              queryTextHandle(draft => {
+                return { ...draft, [showName]: item.text as string };
               });
               return true;
             }

@@ -13,21 +13,26 @@ type PageInfo<T> = {
 };
 
 export namespace NaturalApi {
-  export type ListReq = {
-    pageNum: number;
-    pageSize: number;
+  export type NaturalInfo = {
+    deliveryTime: number;
+    origin: string;
+    supplier: string;
+    shape: number;
+    color: number;
+    neatness: number;
+    cut: number;
+    polishing: number;
+    symmetry: number;
+    certificate: number;
+    fluorescence: number;
+    karat: number;
+    size: string;
   };
 
-  export type ListRes = PageInfo<{
-    deliveryTime: string;
-    origin: string;
-    shape: string;
-    color: string;
-    neatness: string;
-    cut: string;
-    polishing: string;
-    symmetry: string;
-    certificate: string;
-    fluorescence: string;
-  }>;
+  export type ListReq = {
+    pageNum?: number;
+    pageSize?: number;
+  } & NaturalInfo;
+
+  export type ListRes = PageInfo<NaturalInfo>;
 }
