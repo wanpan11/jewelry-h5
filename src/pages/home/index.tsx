@@ -6,6 +6,7 @@ import lessStyle from "./index.module.less";
 import { useNavigate } from "react-router-dom";
 import MobxContext from "@src/store/context";
 import diamond from "@src/assets/images/diamond.svg";
+import banner_1 from "@src/assets/images/banner_1.jpg";
 
 const Home = () => {
   const [initPage1] = useState(0);
@@ -25,7 +26,7 @@ const Home = () => {
         <SwiperItem>
           <img
             style={{ width: "100%", display: "block" }}
-            src="https://wanbaorapdia.oss-cn-shenzhen.aliyuncs.com/fileserver/image/rapnetbuy/login-aside-3.png"
+            src={banner_1}
             alt=""
           />
         </SwiperItem>
@@ -42,7 +43,9 @@ const Home = () => {
                   store.setTopLevel(false);
                 }}
               >
-                <img src={diamond} alt="" className={lessStyle.tab_icon} />
+                <div className={lessStyle.tab_item}>
+                  <img src={diamond} alt="" className={lessStyle.tab_icon} />
+                </div>
 
                 <div className={lessStyle.tab_label}>{e.label}</div>
               </div>

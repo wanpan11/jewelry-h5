@@ -5,6 +5,7 @@ import {
   CollapseItem,
   Button,
   Skeleton,
+  Empty,
 } from "@nutui/nutui-react";
 import lessStyle from "./index.module.less";
 import { useState } from "react";
@@ -36,10 +37,14 @@ const Natural = () => {
 
   const showList = showName ? queryObj[showName] : [];
 
+  const title = Object.keys(queryText)
+    .map(key => queryText[key])
+    .toString();
+
   return (
     <div>
       <Collapse
-        activeName={activeName ? [activeName] : []}
+        activeName={activeName ? [activeName] : undefined}
         icon="arrow-down"
         iconSize="16"
         iconColor="#999"
@@ -48,7 +53,7 @@ const Natural = () => {
         }}
         className={lessStyle.query_box}
       >
-        <CollapseItem title="查询条件" name="1">
+        <CollapseItem title={`查询条件：${title}`} name="search">
           {queryList.map(e => {
             return (
               <Cell
@@ -99,84 +104,88 @@ const Natural = () => {
 
       <div className={lessStyle.list}>
         {!loading ? (
-          <div className={lessStyle.table}>
-            {data?.data.list.map((e, i) => {
-              return (
-                <div key={i} className={lessStyle.item}>
-                  <div className={lessStyle.info_box}>
-                    <div className={lessStyle.title}>货源信息</div>
+          data?.data.list.length ? (
+            <div className={lessStyle.table}>
+              {data?.data.list.map((e, i) => {
+                return (
+                  <div key={i} className={lessStyle.item}>
+                    <div className={lessStyle.info_box}>
+                      <div className={lessStyle.title}>货源信息</div>
 
-                    <div className={lessStyle.content}>
-                      <span>
-                        <span>货期：</span>
-                        {e.deliveryTime}
-                      </span>
-                      <span>
-                        <span>地点：</span>
-                        {e.origin}
-                      </span>
-                      <span>
-                        <span>供应商：</span>
-                        {e.supplier}
-                      </span>
+                      <div className={lessStyle.content}>
+                        <span>
+                          <span>货期：</span>
+                          {e.deliveryTime}
+                        </span>
+                        <span>
+                          <span>地点：</span>
+                          {e.origin}
+                        </span>
+                        <span>
+                          <span>供应商：</span>
+                          {e.supplier}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className={lessStyle.info_box}>
+                      <div className={lessStyle.title}>货品信息</div>
+
+                      <div className={lessStyle.content}>
+                        <span>
+                          <span>形状：</span>
+                          {Shape[e.shape]}
+                        </span>
+                        <span>
+                          <span>颜色：</span>
+                          {Color[e.color]}
+                        </span>
+                        <span>
+                          <span>净度：</span>
+                          {Neatness[e.neatness]}
+                        </span>
+                        <span>
+                          <span>切工：</span>
+                          {Cut[e.cut]}
+                        </span>
+                        <span>
+                          <span>抛光：</span>
+                          {Polishing[e.polishing]}
+                        </span>
+                        <span>
+                          <span>对称：</span>
+                          {Symmetry[e.symmetry]}
+                        </span>
+                        <span>
+                          <span>证书：</span>
+                          {Certificate[e.certificate]}
+                        </span>
+                        <span>
+                          <span>荧光：</span>
+                          {Fluorescence[e.fluorescence]}
+                        </span>
+                        <span>
+                          <span>克拉：</span>
+                          {e.karat}
+                        </span>
+                        <span>
+                          <span>尺寸：</span>
+                          {e.size}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className={lessStyle.btn_box}>
+                      <Button>详情</Button>
+                      <Button>联系</Button>
                     </div>
                   </div>
-
-                  <div className={lessStyle.info_box}>
-                    <div className={lessStyle.title}>货品信息</div>
-
-                    <div className={lessStyle.content}>
-                      <span>
-                        <span>形状：</span>
-                        {Shape[e.shape]}
-                      </span>
-                      <span>
-                        <span>颜色：</span>
-                        {Color[e.color]}
-                      </span>
-                      <span>
-                        <span>净度：</span>
-                        {Neatness[e.neatness]}
-                      </span>
-                      <span>
-                        <span>切工：</span>
-                        {Cut[e.cut]}
-                      </span>
-                      <span>
-                        <span>抛光：</span>
-                        {Polishing[e.polishing]}
-                      </span>
-                      <span>
-                        <span>对称：</span>
-                        {Symmetry[e.symmetry]}
-                      </span>
-                      <span>
-                        <span>证书：</span>
-                        {Certificate[e.certificate]}
-                      </span>
-                      <span>
-                        <span>荧光：</span>
-                        {Fluorescence[e.fluorescence]}
-                      </span>
-                      <span>
-                        <span>克拉：</span>
-                        {e.karat}
-                      </span>
-                      <span>
-                        <span>尺寸：</span>
-                        {e.size}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className={lessStyle.btn_box}>
-                    <Button>详情</Button>
-                    <Button>联系</Button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          ) : (
+            <Empty description="无数据" />
+          )
         ) : (
           <Skeleton width="100vw" height="20px" row={20} round animated />
         )}

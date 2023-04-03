@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import Home from "@src/pages/home";
 
 const getLazyLoad = (url: string) => lazy(() => import(`@src/pages${url}`));
 
@@ -23,7 +24,7 @@ const routers: Route[] = [
         id: "11",
         index: true,
         title: "首页",
-        component: getLazyLoad("/home"),
+        component: Home,
       },
       {
         id: "12",
